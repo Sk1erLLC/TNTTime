@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "tnttimer",
+    "name": "TNT Timer",
+    "description": "Displays the time before some TNT explodes.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Sk1erLLC"
+    ],
+    "credits": "biscut for the lobby checker",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
