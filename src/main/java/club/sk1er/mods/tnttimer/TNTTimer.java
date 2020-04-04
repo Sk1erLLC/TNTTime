@@ -31,8 +31,7 @@ public class TNTTimer {
 
         double d0 = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
-        if (d0 <= (double)(64 * 64))
-        {
+        if (d0 <= (double)(64 * 64)) {
             String str = getTNTTimeString(tntPrimed.fuse);
             FontRenderer fontrenderer = tntRenderer.getFontRendererFromRenderManager();
             float f = 1.6F;
@@ -53,17 +52,16 @@ public class TNTTimer {
             int i = 0;
 
             int j = fontrenderer.getStringWidth(str) / 2;
-;
             float green = Math.min(tntPrimed.fuse / 80f, 1f);
-            Color color = new Color(1f-green, green, 0f);
+            Color color = new Color(1f - green, green, 0f);
             GlStateManager.enableDepth();
             GlStateManager.depthMask(true);
             GlStateManager.disableTexture2D();
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-            worldrenderer.pos((double)(-j - 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double)(-j - 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double)(j + 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos(-j - 1, -1 + i, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos(-j - 1, 8 + i, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos(j + 1, 8 + i, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos(j + 1, -1 + i, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
             fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, color.getRGB());

@@ -23,7 +23,8 @@ public class EntityTNTPrimedTransformer implements Transformer {
                     AbstractInsnNode node = iterator.next();
                     if (node.getOpcode() == INVOKESTATIC) {
                         MethodInsnNode methodInsnNode = (MethodInsnNode) node;
-                        if (methodInsnNode.name.equals("popMatrix") || methodInsnNode.name.equals("func_179121_F")) {
+                        String methodInsnName = mapMethodNameFromNode(methodInsnNode);
+                        if (methodInsnName.equals("popMatrix") || methodInsnName.equals("func_179121_F")) {
                             InsnList list = new InsnList();
                             list.add(new FieldInsnNode(GETSTATIC, "club/sk1er/mods/tnttimer/TNTTimer", "instance", "Lclub/sk1er/mods/tnttimer/TNTTimer;"));
                             list.add(new VarInsnNode(ALOAD, 0));
