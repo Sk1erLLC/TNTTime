@@ -13,7 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
+import java.awt.Color;
+import java.text.DecimalFormat;
 
 @Mod(modid = "tnttimer", name = "TNT Timer", version = "1.0")
 public class TNTTimer {
@@ -27,17 +28,21 @@ public class TNTTimer {
     }
 
 
-    public void renderTag(RenderTNTPrimed tntRenderer,EntityTNTPrimed tntPrimed, double x, double y, double z) {
-
+    public void renderTag(RenderTNTPrimed tntRenderer, EntityTNTPrimed tntPrimed, double x, double y, double z, float partialTicks) {
+        if (tntPrimed.fuse < 1) return;
         double d0 = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
-        if (d0 <= (double)(64 * 64)) {
-            String str = getTNTTimeString(tntPrimed.fuse);
+        if (d0 <= (double) (64 * 64)) {
+            ///1.32
+            float number = (tntPrimed.fuse - partialTicks) / 20F;
+
+            System.out.println(number);
+            String str = new DecimalFormat("0.00").format(number);
             FontRenderer fontrenderer = tntRenderer.getFontRendererFromRenderManager();
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GlStateManager.pushMatrix();
-            GlStateManager.translate((float)x + 0.0F, (float)y + tntPrimed.height + 0.5F, (float)z);
+            GlStateManager.translate((float) x + 0.0F, (float) y + tntPrimed.height + 0.5F, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(-tntRenderer.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(tntRenderer.getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
@@ -50,7 +55,6 @@ public class TNTTimer {
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
             int i = 0;
-
             int j = fontrenderer.getStringWidth(str) / 2;
             float green = Math.min(tntPrimed.fuse / 80f, 1f);
             Color color = new Color(1f - green, green, 0f);
@@ -72,9 +76,4 @@ public class TNTTimer {
         }
     }
 
-    private String getTNTTimeString(int fuse) {
-        int seconds = (fuse / 20);
-        int milli = (fuse % 20) * 60;
-        return String.format("%d:%d", seconds, milli);
-    }
 }

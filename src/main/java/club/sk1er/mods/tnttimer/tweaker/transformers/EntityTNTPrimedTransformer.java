@@ -32,7 +32,8 @@ public class EntityTNTPrimedTransformer implements Transformer {
                             list.add(new VarInsnNode(DLOAD, 2));
                             list.add(new VarInsnNode(DLOAD, 4));
                             list.add(new VarInsnNode(DLOAD, 6));
-                            list.add(new MethodInsnNode(INVOKEVIRTUAL, "club/sk1er/mods/tnttimer/TNTTimer", "renderTag", "(Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;Lnet/minecraft/entity/item/EntityTNTPrimed;DDD)V", false));
+                            list.add(new VarInsnNode(FLOAD, 9));
+                            list.add(new MethodInsnNode(INVOKEVIRTUAL, "club/sk1er/mods/tnttimer/TNTTimer", "renderTag", "(Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;Lnet/minecraft/entity/item/EntityTNTPrimed;DDDF)V", false));
                             methodNode.instructions.insert(methodInsnNode, list);
                             break;
                         }
