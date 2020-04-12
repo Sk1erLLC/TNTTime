@@ -16,11 +16,11 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Color;
 import java.text.DecimalFormat;
 
-@Mod(modid = "tnttimer", name = "TNT Timer", version = "1.0")
-public class TNTTimer {
+@Mod(modid = "tnttime", name = "TNT Time", version = "1.0")
+public class TNTTime {
 
     @Mod.Instance
-    public static TNTTimer instance;
+    public static TNTTime instance;
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
@@ -33,11 +33,9 @@ public class TNTTimer {
         double d0 = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
         if (d0 <= (double) (64 * 64)) {
-            ///1.32
             float number = (tntPrimed.fuse - partialTicks) / 20F;
 
-            System.out.println(number);
-            String str = new DecimalFormat("0.00").format(number);
+            String str = new DecimalFormat("0.00s").format(number);
             FontRenderer fontrenderer = tntRenderer.getFontRendererFromRenderManager();
             float f = 1.6F;
             float f1 = 0.016666668F * f;

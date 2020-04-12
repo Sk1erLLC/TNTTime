@@ -1,8 +1,8 @@
 [
   {
-    "modid": "tnttimer",
-    "name": "TNT Timer",
-    "description": "Displays the time before some TNT explodes.",
+    "modid": "tnttime",
+    "name": "TNT Time",
+    "description": "Displays the time before TNT explodes.",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",

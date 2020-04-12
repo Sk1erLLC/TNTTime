@@ -26,16 +26,16 @@ public class EntityTNTPrimedTransformer implements Transformer {
                         String methodInsnName = mapMethodNameFromNode(methodInsnNode);
                         if (methodInsnName.equals("popMatrix") || methodInsnName.equals("func_179121_F")) {
                             InsnList list = new InsnList();
-                            list.add(new FieldInsnNode(GETSTATIC, "club/sk1er/mods/tnttimer/TNTTimer", "instance", "Lclub/sk1er/mods/tnttimer/TNTTimer;"));
+                            list.add(new FieldInsnNode(GETSTATIC, "club/sk1er/mods/tnttimer/TNTTime", "instance", "Lclub/sk1er/mods/tnttimer/TNTTime;"));
                             list.add(new VarInsnNode(ALOAD, 0));
                             list.add(new VarInsnNode(ALOAD, 1));
                             list.add(new VarInsnNode(DLOAD, 2));
                             list.add(new VarInsnNode(DLOAD, 4));
                             list.add(new VarInsnNode(DLOAD, 6));
                             list.add(new VarInsnNode(FLOAD, 9));
-                            list.add(new MethodInsnNode(INVOKEVIRTUAL, "club/sk1er/mods/tnttimer/TNTTimer", "renderTag", "(Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;Lnet/minecraft/entity/item/EntityTNTPrimed;DDDF)V", false));
+                            list.add(new MethodInsnNode(INVOKEVIRTUAL, "club/sk1er/mods/tnttimer/TNTTime", "renderTag", "(Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;Lnet/minecraft/entity/item/EntityTNTPrimed;DDDF)V", false));
                             methodNode.instructions.insert(methodInsnNode, list);
-                            break;
+                            return;
                         }
                     }
                 }
