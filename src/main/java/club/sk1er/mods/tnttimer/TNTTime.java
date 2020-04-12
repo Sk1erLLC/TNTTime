@@ -22,6 +22,8 @@ public class TNTTime {
     @Mod.Instance
     public static TNTTime instance;
 
+    private final Minecraft mc = Minecraft.getMinecraft();
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
@@ -33,9 +35,9 @@ public class TNTTime {
         double d0 = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
         if (d0 <= (double) (64 * 64)) {
+            ///1.32
             float number = (tntPrimed.fuse - partialTicks) / 20F;
-
-            String str = new DecimalFormat("0.00s").format(number);
+            String str = new DecimalFormat("0.00").format(number);
             FontRenderer fontrenderer = tntRenderer.getFontRendererFromRenderManager();
             float f = 1.6F;
             float f1 = 0.016666668F * f;
@@ -43,7 +45,14 @@ public class TNTTime {
             GlStateManager.translate((float) x + 0.0F, (float) y + tntPrimed.height + 0.5F, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(-tntRenderer.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(tntRenderer.getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
+
+            int xMultiplier = 1; // Nametag x rotations should flip in front-facing 3rd person
+
+            if (mc != null && mc.gameSettings != null && mc.gameSettings.thirdPersonView == 2) {
+                xMultiplier = -1;
+            }
+
+            GlStateManager.rotate(tntRenderer.getRenderManager().playerViewX * xMultiplier, 1.0F, 0.0F, 0.0F);
             GlStateManager.scale(-f1, -f1, f1);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(false);
