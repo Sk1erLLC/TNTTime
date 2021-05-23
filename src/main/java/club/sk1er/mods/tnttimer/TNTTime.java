@@ -1,6 +1,5 @@
 package club.sk1er.mods.tnttimer;
 
-import club.sk1er.mods.modcore.ModCoreInstaller;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Color;
 import java.text.DecimalFormat;
 
-@Mod(modid = "tnttime", name = "TNT Time", version = "1.0")
+@Mod(modid = "tnttime", name = "TNT Time", version = "1.1.0")
 public class TNTTime {
 
     @Mod.Instance
@@ -26,16 +25,14 @@ public class TNTTime {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
     }
-
 
     public void renderTag(RenderTNTPrimed tntRenderer, EntityTNTPrimed tntPrimed, double x, double y, double z, float partialTicks) {
         if (tntPrimed.fuse < 1) return;
         double d0 = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
         if (d0 <= (double) (64 * 64)) {
-            ///1.32
+            // todo: support bedwars obscure change in time
             float number = (tntPrimed.fuse - partialTicks) / 20F;
             String str = new DecimalFormat("0.00").format(number);
             FontRenderer fontrenderer = tntRenderer.getFontRendererFromRenderManager();
