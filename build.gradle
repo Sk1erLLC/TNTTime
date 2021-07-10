@@ -44,6 +44,8 @@ minecraft {
     mappings = "stable_22"
     runDir = "run"
     makeObfSourceJar = false
+    clientRunArgs += ["--tweakClass=gg.essential.loader.stage0.EssentialSetupTweaker"]
+    clientJvmArgs += ["-Dfml.coreMods.load=club.sk1er.mods.tnttimer.forge.FMLLoadingPlugin"]
 }
 
 configurations {
