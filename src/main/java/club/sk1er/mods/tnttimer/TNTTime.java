@@ -42,8 +42,6 @@ public class TNTTime {
     @SubscribeEvent
     public void clientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.START
-            /// we don't care if they're not on hypixel
-            || !EssentialAPI.getMinecraftUtil().isHypixel()
             // no need to check super often, they're likely not going to see tnt within 5 seconds
             // of moving out of a bedwars game/lobby
             || this.checkTimer++ < 250) {
@@ -51,6 +49,12 @@ public class TNTTime {
         }
 
         this.checkTimer = 0;
+
+        if (!EssentialAPI.getMinecraftUtil().isHypixel()) {
+            this.playingBedwars = false;
+            return;
+        }
+
         final WorldClient world = mc.theWorld;
         if (world == null) {
             this.playingBedwars = false;
