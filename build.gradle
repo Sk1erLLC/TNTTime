@@ -55,7 +55,7 @@ configurations {
 
 dependencies {
     embed "gg.essential:loader-launchwrapper:1.0.2"
-    implementation "gg.essential:Essential:1062-${mcVersion}-SNAPSHOT"
+    implementation "gg.essential:Essential:1149-${mcVersion}-SNAPSHOT"
 }
 
 task moveResources {
