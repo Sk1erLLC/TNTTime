@@ -4,7 +4,7 @@
     "name": "TNT Time",
     "description": "Displays the time before TNT explodes.",
     "version": "${version}",
-    "mcversion": "${mcversion}",
+    "mcversion": "${mcVersionStr}",
     "url": "",
     "updateUrl": "",
     "authorList": [
